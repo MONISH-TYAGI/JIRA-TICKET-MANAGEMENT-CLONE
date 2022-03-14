@@ -51,7 +51,7 @@ plus.addEventListener("click",(e)=>{
        
          // return;
             let key=e.key;
-            if(key=="End")
+            if(key=="Enter")
             {
               let content=textArea.value ;
             //   console.log("error"+color+id+content);
@@ -240,7 +240,7 @@ console.log(checkingHtml);
  box.addEventListener("keydown", function nextStep(e){
 
       let key=e.key;
-      if(key=="End")
+      if(key=="Enter")
       {
        data.value=text_content.value;
    //records mai change
