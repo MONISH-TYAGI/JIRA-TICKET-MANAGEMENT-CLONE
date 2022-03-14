@@ -1,0 +1,45 @@
+.ticket
+{
+    transform: scale(0.9);
+}
+
+
+.colors-cont {
+    height: 3rem;
+    width: 28%;
+    margin-left: 5%;
+    background-color: darkgrey;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.modal-cont{
+    position: fixed;
+    height: 62vh;
+    width: 77vw;
+    left: calc( ( 100vw - 77vw) /2);
+}
+.action-cont {
+    height: 3rem;
+    width: 5rem;
+    margin-left: 2%;
+    background-color: darkgrey;
+    display: flex;
+    cursor: pointer;
+    transform: scale(0.8);
+}
+.add {
+    height: 97%;
+    width: 2.5rem;
+    border: 1px solid black;
+    font-size: 3rem;
+}
+.remove {
+    height: 97%;
+    width: 2.5rem;
+    border: 1px solid black;
+    font-size: 3.2rem;
+    background-color: darkgrey;
+    /* margin-left: 1px; */
+    padding-top: 0px;
+}
