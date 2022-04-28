@@ -10,13 +10,16 @@ let remove=document.querySelector(".remove");
 let color="black";
 let textArea=document.querySelector('.content');
 let id;
-
+let filtercheck=false;
 
 
 
 let template=document.querySelector("template");
 let check=1;
 plus.addEventListener("click",(e)=>{
+   if(filtercheck==true)
+   return ;
+   back_button.style.color="red";
    box=document.querySelector(".modal-cont");
    let value=remove.getAttribute("value");
     console.log("value"+value)
@@ -30,7 +33,8 @@ plus.addEventListener("click",(e)=>{
     if(box.classList.contains('hidden'))
     {
      box.classList.remove('hidden');
-     
+     plus.classList.add('border');
+//  plus.style.border="1px solid white ";
       textArea.value='';
       // console.log("hi");
       // box.style.opacity=1;
@@ -53,6 +57,8 @@ plus.addEventListener("click",(e)=>{
             let key=e.key;
             if(key=="Enter")
             {
+               if(plus.classList.contains('border'))
+               plus.classList.remove('border');
               let content=textArea.value ;
             //   console.log("error"+color+id+content);
               if (typeof(records) == 'undefined' || records == null){
@@ -78,7 +84,8 @@ plus.addEventListener("click",(e)=>{
    // box.style.display="none";
    //  box.style.opacity=0;
     box.classList.add('hidden');   
-    
+    plus.classList.remove('border');
+    back_button.style.color="black";
  }
  
 handleColor();
@@ -91,11 +98,16 @@ handleColor();
 // }
 
 remove.addEventListener("click",(e)=>{
+   back_button.style.color="red";
    let value=remove.getAttribute("value");
    // console.log(value);
   if(value=='false')
  { 
-   
+   if(plus.classList.contains('border'))
+   {
+      box.classList.add('hidden');
+   plus.classList.remove('border');
+   }
      remove.setAttribute("value",true);
 
    remove.classList.add('border');
@@ -107,6 +119,7 @@ else{
    remove.setAttribute("value",false);
    remove.classList.remove('border');
    removeHandleListener();
+   back_button.style.color="black";
    
 }
 })
@@ -139,7 +152,7 @@ let idx=records.findIndex((obj)=>{
 })
 // console.log(idx);
 records.splice(idx,1);
- console.log(records);
+//  console.log(records);
 saveInStorage();
 }
 
@@ -157,7 +170,7 @@ for(let i=0;i<list.length;i++)
        
 
        color=list[i].className;
-       console.log(color);
+      //  console.log(color);
        list[i].classList.add('list');
        list[i].classList.add('border');
    
@@ -195,7 +208,7 @@ ticketCont.innerHTML=`
     
 main_cont.append(ticketCont);
 let changelockArr=document.querySelectorAll(".id");
-console.log("lock length"+changelockArr.length);
+// console.log("lock length"+changelockArr.length);
 // if(changelockArr.length==undefined)
 // {
 //    prechangecolor();
@@ -231,7 +244,7 @@ if(box.classList.contains('hidden'))
  let data=parentElem.parentElement.querySelector(".ticket-content");
 //  console.log("A"+data.innerText);
  let checkingHtml=parentElem.parentELement;
-console.log(checkingHtml);
+// console.log(checkingHtml);
  
  let text_content=box.querySelector("textarea");
  text_content.value=data.value;
@@ -271,21 +284,45 @@ else
    
 }
 lockvalue=!lockvalue;
-console.log("end lock value "+lockvalue);
+// console.log("end lock value "+lockvalue);
 }
 
 
 let head_filter_color=document.querySelectorAll("#head_color");
-console.log("elem"+head_filter_color.length);
+// console.log("elem"+head_filter_color.length);
 for(let i=0;i<head_filter_color.length;i++)
 {
-   console.log(head_filter_color[i]);
-    head_filter_color[i].addEventListener("click",filter);
+   // console.log(head_filter_color[i]);
+    head_filter_color[i].addEventListener("click",filter.bind(event,i),false);
 }
-function filter()
+let j=null;
+function filter(i,evt)
 {
-   let className=this.getAttribute("class");
-   console.log(className);
+   back_button.style.color="red";
+   // for(let i=0;i<head_filter_color.length;i++)
+   // {
+   //    // console.log(head_filter_color[i]);
+   //    if(head_filter_color[i].classList.contains('border'))
+      //  head_filter_color[i].classList.remove('border');
+   // }
+   if(j!=null)
+   head_filter_color[j].classList.remove('border');
+   let className=head_filter_color[i].getAttribute("class");
+   head_filter_color[i].classList.add('border');
+   j=i;
+ 
+   // console.log("hello"+className);
+   if(plus.classList.contains('border'))
+   plus.classList.remove('border');
+   if(remove.classList.contains('border'))
+   remove.classList.remove('border');
+   console.log(box.classList);
+   if(box.classList.contains('hidden')==false)
+   {
+      box.classList.add('hidden');
+   }
+   // let realclassName=className.split(" ")[0];
+// console.log("realclassName"+realclassName)
    switch(className)
    {
       case "light-pink" :filterList("lightpink");
@@ -298,21 +335,23 @@ function filter()
       break;
 default:console.log("nahi chala");
    }
+   // head_filter_color[i].classList.remove('border');
 }
 
 function filterList(color)
 {
+   filtercheck=true;
+   // console.log("hello");
 
-   console.log("hello");
     main_cont.innerHTML=``;
-    console.log(records);
+   //  console.log(records);
      for(let i=0;i<records.length;i++)
      {
-console.log(records[i].color);
-console.log(color);
+// console.log(records[i].color);
+// console.log(color);
         if(records[i].color==color)
-        {console.log("final"+records[i].color);
-        
+      //   {console.log("final"+records[i].color);
+     {   
          createTicket(records[i].color,records[i].id,records[i].content);
      }
      }
@@ -320,7 +359,7 @@ console.log(color);
 
 function prechangecolor(){
 let ticketArr=document.querySelectorAll(".ticket");
-console.log("ticket lenght "+ticketArr.length);
+// console.log("ticket lenght "+ticketArr.length);
 ticketArr.forEach((obj)=>{
    // console.log(obj.innerHTML);
     let block=obj.querySelector(".color")
@@ -330,7 +369,9 @@ block.addEventListener("click",changecolor);
 
 
 function loadFromStorage(){
+
    main_cont.innerHTML=``;
+   // 
 //    let html=`<div class="modal-cont hidden">
 //    <textarea spellcheck="false" class="content"></textarea>
 //    <div  class="side-bar">
@@ -354,11 +395,31 @@ prechangecolor();
 }
 back_button.addEventListener("click",(e)=>{
   // aditional feature
+  back_button.style.color="black";
+  if(j!=null)
+{
+   head_filter_color[j].classList.remove('border');
+   j=null;
+}
    if(box.classList.contains("hidden")==false)
    {
       box.classList.add("hidden");
+      plus.classList.remove('border');
+      // remove.classList.remove('border');
+      // remove.classList.remove('remove');
    }
+   else
+   {
+      if(remove.classList.contains('border'))
+      {
+         console.log(remove.classList);
+      remove.classList.remove('border');
+
+      }
+   }
+   console.log("back");
    loadFromStorage();
+   filtercheck=false;
 })
 
 
@@ -366,20 +427,20 @@ back_button.addEventListener("click",(e)=>{
 let i=0;
 function changecolor()
 {
-   console.log('hello');
-console.log(i);
+   // console.log('hello');
+// console.log(i);
 if(i==3)
 i=-1;
 //  let block=this.querySelector(".color")
    this.setAttribute("style",`background-color:${colorArr[++i]}`);
    let idTC=this.parentElement.querySelector(".id").innerText;
-   console.log("idTc"+idTC);
+   // console.log("idTc"+idTC);
   let index= records.findIndex((obj)=>{
     return  obj.id==idTC;
    })
-   console.log("index"+index);
+   // console.log("index"+index);
    records[index].color=colorArr[i];
-   console.log("records color"+records[index].color);
+   // console.log("records color"+records[index].color);
    saveInStorage();
 
    

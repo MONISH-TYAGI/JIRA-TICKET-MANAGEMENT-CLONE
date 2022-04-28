@@ -20,26 +20,39 @@
     left: calc( ( 100vw - 77vw) /2);
 }
 .action-cont {
-    height: 3rem;
-    width: 5rem;
+    height: 45%;
+    width: 3.5rem;
     margin-left: 2%;
     background-color: darkgrey;
     display: flex;
     cursor: pointer;
-    transform: scale(0.8);
+    /* object-fit: contain; */
 }
+
 .add {
-    height: 97%;
-    width: 2.5rem;
+    height: 100%;
+    width: 50%;
     border: 1px solid black;
-    font-size: 3rem;
+    /* font-size: 2.5em; */
+    justify-content: center;
+    align-items: center;
+    /* padding: 1% 1%; */
+    display: flex;
+font-size: x-large;
 }
 .remove {
-    height: 97%;
-    width: 2.5rem;
+    height: 100%;
+    width: 50%;
     border: 1px solid black;
-    font-size: 3.2rem;
-    background-color: darkgrey;
+    /* font-size: 2.5em; */
+font-size: x-large;
+    /* background-color: darkgrey; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
     /* margin-left: 1px; */
-    padding-top: 0px;
+    /* padding-top: 0px; */
+}
+.border{
+    border:1px solid white;
 }

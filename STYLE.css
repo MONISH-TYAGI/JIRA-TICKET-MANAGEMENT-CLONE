@@ -44,30 +44,40 @@
     margin-left:5% ;
     margin-right: 5%;
 }
-.action-cont{
-    height: 3rem;
-    width: 4%;
-    margin-left: 2%;
-   background-color: darkgrey;
-   
-   display: flex;
-   cursor:pointer;
-}
-.add{
-    height: 97%;
-    width: 60%;
-border: 1px solid black;
-font-size: 3rem ;
 
-}
-.remove{
-    height: 97%;
-    width: 100%;
-    border: 1px solid black;
-    font-size: 3.2rem;
+.action-cont {
+    height: 50%;
+    width: 5rem;
+    margin-left: 2%;
     background-color: darkgrey;
+    display: flex;
+    cursor: pointer;
+    /* object-fit: contain; */
+}
+
+.add {
+    height: 100%;
+    width: 50%;
+    border: 1px solid black;
+    /* font-size: 2.5em; */
+    justify-content: center;
+    align-items: center;
+    /* padding: 1% 1%; */
+    display: flex;
+font-size: xx-large;
+}
+.remove {
+    height: 100%;
+    width: 50%;
+    border: 1px solid black;
+    /* font-size: 2.5em; */
+font-size: xx-large;
+    /* background-color: darkgrey; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
     /* margin-left: 1px; */
-    padding-top: 0px;
+    /* padding-top: 0px; */
 }
 .main-cont{
     display:flex;
@@ -182,7 +192,7 @@ background-color: lightblue;
     border: 1px solid white;
 } */
 .border{
-    border:1px solid white;
+    border:2px solid white;
 }
 button{
     position: absolute;
@@ -211,12 +221,8 @@ button:hover{
     /* height: 14%; */
     margin-top: -4px;
 }
-.fa-solid.fa-lock{
-/* background-color: red; */
-/* position: relative;  */
- /* display: none;  */
-
-
+i{
+    
 }
 
 .fa-solid.fa-lock-open{
@@ -226,21 +232,4 @@ button:hover{
 
     display: none;
 
-}
-@media screen and (max-width: 768px){
-    .add {
-        height: 97%;
-        width: 33%;
-        border: 1px solid black;
-        font-size: 3rem;
-    }
-    .remove {
-        height: 97%;
-        width: 27%;
-        border: 1px solid black;
-        font-size: 3.2rem;
-        background-color: darkgrey;
-        /* margin-left: 1px; */
-        padding-top: 0px;
-    }
 }
